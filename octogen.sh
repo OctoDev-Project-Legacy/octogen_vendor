@@ -64,8 +64,8 @@ function build_octogen {
 	make otapackage -j$cpucores 2<&1 | tee builder.log
 	res2=$(date +%s.%N)
 	cd out/target/product/$configb
-	FILE=octogen-OS-$configb-`date +"%Y%m%d"`.zip
-	FILE2=octogen_$configb-Changelog.txt
+	FILE=Octogen-OS-$configb-`date +"%Y%m%d"`.zip
+	FILE2=Octogen_$configb-Changelog.txt
 	if [ -f ./$FILE ]; then
 		echo -e "${bldgrn}Copyng zip file...${txtrst}"
 		if [ -f ~/$octogen_build_dir/$FILE ]; then
@@ -179,15 +179,15 @@ function repo_clone {
 	if [ $configb = "bullhead" ]; then
 		if ! [ -d device/lge/bullhead ]; then
 			echo -e "${bldred}N5X: No device tree, downloading...${txtrst}"
-			git clone https://github.com/OctoDev-Devices/octogen_device_lge_bullhead.git -b n2 device/lge/bullhead
+			git clone https://github.com/OctoDev-Devices/octogen_device_lge_bullhead.git -b o device/lge/bullhead
 		fi
 		if ! [ -d kernel/lge/bullhead ]; then
 			echo -e "${bldred}N5X: No kernel sources, downloading...${txtrst}"
-			git clone https://github.com/OctoDev-Devices/octogen_kernel_lge_bullhead.git -b n2 kernel/lge/bullhead
+			git clone https://github.com/OctoDev-Devices/octogen_kernel_lge_bullhead.git -b o kernel/lge/bullhead
 		fi
 		if ! [ -d vendor/lge/bullhead ]; then
 			echo -e "${bldred}N5X: No vendor, downloading...${txtrst}"
-			git clone https://github.com/OctoDev-Devices/octogen_vendor_lge_bullhead.git -b n2 vendor/lge/bullhead
+			git clone https://github.com/OctoDev-Devices/octogen_vendor_lge_bullhead.git -b o vendor/lge/bullhead
 		fi
 	fi
 }
