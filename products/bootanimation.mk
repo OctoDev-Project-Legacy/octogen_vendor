@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#ifneq ($(filter octogen_bullhead,$(TARGET_PRODUCT)),)
-#    PRODUCT_COPY_FILES += \
-#        vendor/nitrogen/prebuilt/common/bootanimation/1080x1920.zip:system/media/bootanimation.zip
-#endif
+ifneq ($(filter octogen_bullhead,$(TARGET_PRODUCT)),)
+    PRODUCT_COPY_FILES += \
+        vendor/octogen/prebuilt/common/bootanimation/1080.zip:system/media/bootanimation.zip
+endif
