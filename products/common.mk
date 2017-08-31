@@ -3,6 +3,8 @@ PRODUCT_NAME := octogen
 PRODUCT_BRAND := octogen
 PRODUCT_DEVICE := generic
 
+EXCLUDE_SYSTEMUI_TESTS := true
+
 PRODUCT_BUILD_PROP_OVERRIDES := BUILD_DISPLAY_ID=$(TARGET_PRODUCT)-$(PLATFORM_VERSION)-$(BUILD_ID)
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -19,7 +21,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     net.tethering.noprovisioning=true \
     persist.sys.dun.override=0 \
     ro.build.selinux=1 \
-    ro.adb.secure=0
+    ro.adb.secure=0 \
+    ro.setupwizard.rotation_locked=true \
+    ro.opa.eligible_device=true
+
+# Disable HDCP check
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.wfd.nohdcp=1
+
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    persist.service.adb.enable=1
 
 # Common overlay
 PRODUCT_PACKAGE_OVERLAYS += \
@@ -35,15 +48,17 @@ PRODUCT_COPY_FILES += \
 
 # Extra packages
 PRODUCT_PACKAGES += \
+    Launcher3 \
+    Stk \
     Busybox \
     LockClock \
-    Stk \
     Terminal
 
 # Init.d script support
 PRODUCT_COPY_FILES += \
     vendor/octogen/prebuilt/common/bin/sysinit:system/bin/sysinit \
-    vendor/octogen/prebuilt/common/etc/init.d.rc:root/init.d.rc
+    vendor/octogen/prebuilt/common/init.d/00banner:system/etc/init.d/00banner \
+    vendor/octogen/prebuilt/common/init.d/init.d.rc:root/init.d.rc
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
@@ -51,5 +66,8 @@ PRODUCT_COPY_FILES += \
     vendor/octogen/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
     vendor/octogen/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions
 
+# Octogen OTA
+#$(call inherit-product-if-exists, vendor/octogen/products/ota.mk)
+
 # Boot animations
-$(call inherit-product-if-exists, vendor/octogen/products/bootanimation.mk) 
+$(call inherit-product-if-exists, vendor/octogen/products/bootanimation.mk)

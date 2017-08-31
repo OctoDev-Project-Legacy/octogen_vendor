@@ -1,0 +1,8 @@
+#!/system/bin/sh
+log -p i -t start ". OctoDev Project ........................ Android 8 .";
+log -p i -t start ".    _____     _                      _____ _____    .";
+log -p i -t start ".   |     |___| |_ ___ ___ ___ ___   |     |   __|   .";
+log -p i -t start ".   |  |  |  _|  _| . | . | -_|   |  |  |  |__   |   .";
+log -p i -t start ".   |_____|___|_| |___|_  |___|_|_|  |_____|_____|   .";
+log -p i -t start ".                     |___|                          .";
+log -p i -t start "............................................ By XrTV .";
