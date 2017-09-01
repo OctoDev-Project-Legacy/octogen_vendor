@@ -65,7 +65,7 @@ function build_octogen {
 	res2=$(date +%s.%N)
 	cd out/target/product/$configb
 	FILE=Octogen-OS-$configb-`date +"%Y%m%d"`.zip
-	FILE2=Octogen_$configb-Changelog.txt
+	FILE2=octogen_$configb-Changelog.txt
 	if [ -f ./$FILE ]; then
 		echo -e "${bldgrn}Copyng zip file...${txtrst}"
 		if [ -f ~/$octogen_build_dir/$FILE ]; then
