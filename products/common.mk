@@ -75,7 +75,9 @@ PRODUCT_PACKAGES += \
     Browser \
     Busybox \
     LockClock \
-    Terminal
+    Terminal \
+    Stock \
+    PixelTheme
 
 # Init.d script support
 PRODUCT_COPY_FILES += \
