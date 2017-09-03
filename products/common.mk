@@ -50,6 +50,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Launcher3 \
     Stk \
+    Browser \
     Busybox \
     LockClock \
     Terminal
