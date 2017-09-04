@@ -23,7 +23,16 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.selinux=1 \
     ro.adb.secure=0 \
     ro.setupwizard.rotation_locked=true \
-    ro.opa.eligible_device=true
+    ro.opa.eligible_device=true \
+    ro.octogen.version=1.5
+
+ifneq ($(filter xrtv,$(USER)),)
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.octogen.type=OFFICIAL
+else
+    PRODUCT_PROPERTY_OVERRIDES += \
+        ro.octogen.type=UNOFFICIAL
+endif
 
 # Disable HDCP check
 PRODUCT_PROPERTY_OVERRIDES += \
