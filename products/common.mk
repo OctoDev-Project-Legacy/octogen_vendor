@@ -72,3 +72,6 @@ PRODUCT_COPY_FILES += \
 
 # Boot animations
 $(call inherit-product-if-exists, vendor/octogen/products/bootanimation.mk)
+
+# Fingerprints
+$(call inherit-product-if-exists, vendor/octogen/products/fingerprint.mk)
