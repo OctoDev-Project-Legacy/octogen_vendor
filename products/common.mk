@@ -24,7 +24,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.adb.secure=0 \
     ro.setupwizard.rotation_locked=true \
     ro.opa.eligible_device=true \
-    ro.octogen.version=1.5
+    ro.octogen.version=1.6-06.09.2017
 
 ifneq ($(filter xrtv,$(USER)),)
     PRODUCT_PROPERTY_OVERRIDES += \
