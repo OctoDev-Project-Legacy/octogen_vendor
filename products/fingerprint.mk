@@ -14,6 +14,13 @@
 
 ifneq ($(filter octogen_bullhead,$(TARGET_PRODUCT)),)
     PRODUCT_BUILD_PROP_OVERRIDES += \
-        ro.build.description=bullhead-user $(PLATFORM_VERSION) $(BUILD_ID) $(BUILD_NUMBER) test-keys \
-        ro.build.fingerprint=google/bullhead/bullhead:$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER):user/release-keys
+        PRODUCT_NAME=bullhead \
+        BUILD_FINGERPRINT=google/bullhead/bullhead:$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER):user/release-keys \
+        PRIVATE_BUILD_DESC="bullhead-user $(PLATFORM_VERSION) $(BUILD_ID) $(BUILD_NUMBER) test-keys"
+endif
+ifneq ($(filter octogen_angler,$(TARGET_PRODUCT)),)
+    PRODUCT_BUILD_PROP_OVERRIDES += \
+        PRODUCT_NAME=angler \
+        BUILD_FINGERPRINT=google/angler/angler:$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER):user/release-keys \
+        PRIVATE_BUILD_DESC="angler-user $(PLATFORM_VERSION) $(BUILD_ID) $(BUILD_NUMBER) test-keys"
 endif
