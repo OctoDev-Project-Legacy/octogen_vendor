@@ -7,6 +7,25 @@ EXCLUDE_SYSTEMUI_TESTS := true
 
 PRODUCT_BUILD_PROP_OVERRIDES := BUILD_DISPLAY_ID=$(TARGET_PRODUCT)-$(PLATFORM_VERSION)-$(BUILD_ID)
 
+OCTOGEN_VER1 := 1
+OCTOGEN_VER2 := 7
+
+OCTOGEN_STABLE_VERSION := 1.6-06.09.2017
+
+OCTOGEN_VERSION := $(OCTOGEN_VER1).$(OCTOGEN_VER2)-$(shell date +"%d.%m.%Y")
+
+ifneq ($(filter xrtv,$(USER)),)
+    OCTOGEN_BUILD_TYPE := OFFICIAL
+else
+    OCTOGEN_BUILD_TYPE := UNOFFICIAL
+endif
+
+ifneq ($(filter $(OCTOGEN_VERSION),$(OCTOGEN_STABLE_VERSION)),)
+    OCTOGEN_DEV_STAGE := STABLE
+else
+    OCTOGEN_DEV_STAGE := TESTING
+endif
+
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true \
     ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
@@ -24,15 +43,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.adb.secure=0 \
     ro.setupwizard.rotation_locked=true \
     ro.opa.eligible_device=true \
-    ro.octogen.version=1.6-06.09.2017
-
-ifneq ($(filter xrtv,$(USER)),)
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.octogen.type=OFFICIAL
-else
-    PRODUCT_PROPERTY_OVERRIDES += \
-        ro.octogen.type=UNOFFICIAL
-endif
+    ro.octogen.version=$(OCTOGEN_VERSION) \
+    ro.octogen.type=$(OCTOGEN_BUILD_TYPE) \
+    ro.octogen.dev.stage=$(OCTOGEN_DEV_STAGE)
 
 # Disable HDCP check
 PRODUCT_PROPERTY_OVERRIDES += \
